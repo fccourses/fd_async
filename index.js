@@ -11,7 +11,7 @@ function sum(...args) {
 function handleBtnClick(event) {
   /* Блокировка потока */
   let date;
-  for (let i = 0; i < 10000000; i++) {
+  for (let i = 0; i < 100000000; i++) {
     date = new Date();
   }
   console.log(date);
@@ -22,3 +22,7 @@ console.log(res);
 
 
 
+// 2 way to async
+setTimeout(() => {
+  console.log('test timer');
+}, 1000);
