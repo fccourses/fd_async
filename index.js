@@ -1,28 +1,31 @@
 'use strict';
 
-const btn = document.getElementById('btn');
-
-btn.addEventListener('click', handleBtnClick); /* 1 way to async */
-
-function sum(...args) {
-  return args.reduce((a, i) => a + i, 0);
-}
-
-function handleBtnClick(event) {
-  /* Блокировка потока */
-  let date;
-  for (let i = 0; i < 100000000; i++) {
-    date = new Date();
-  }
-  console.log(date);
-}
-
-const res = sum(1, 1, 12, 341, 4, 235, 234, 23);
-console.log(res);
-
-
-
 // 2 way to async
-setTimeout(() => {
-  console.log('test timer');
-}, 1000);
+const timeoutId = setTimeout(function test() {}, 0);
+
+function count() {
+  let number = 0;
+
+  const id = setInterval(() => {
+    console.log(++number);
+    for (let i = 0; i < 1000000000; i++) {}
+    if (number >= 20) {
+      clearInterval(id);
+      console.timeEnd('1');
+    }
+  }, 100);
+}
+
+console.time('1');
+count();
+
+/* 
+Функция, которая последовательно выводит в консоль числа 
+от 1 до 20 с интервалом в 100мс.
+  Решить можно двумя способами. 
+    setTimeout - рекурсия с if'ом
+    setInterval - if, clearInterval
+  Померять время. 
+    console.time('1');
+    console.timeEnd('1');
+*/
