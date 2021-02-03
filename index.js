@@ -15,6 +15,11 @@ function delay(ms) {
   });
 }
 
+/**
+ *
+ * @param {string} src
+ * @return {Promise}
+ */
 function loadImage(src) {
   const imgToSend = document.createElement('img');
   imgToSend.setAttribute('src', src); // Браузер начинает грузить картинку
@@ -29,8 +34,10 @@ function loadImage(src) {
   });
 }
 
-loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg').then(
-  (imgToReceive) => {
+loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg')
+  .then((imgToReceive) => {
     document.body.append(imgToReceive);
-  }
-);
+  })
+  .catch(() => {
+    alert('error happened');
+  });
