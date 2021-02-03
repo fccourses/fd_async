@@ -1,21 +1,20 @@
 'use strict';
 
-const promiseShchrodinger = new Promise(executor);
+/* 
+  Создать функцию delay(ms).then(callback)
 
-function executor(resolve, reject) {
-  const catsFate = Math.random();
+  setTimeout(()=>{},ms)
 
-  if (catsFate >= 0.5) {
-    resolve('cat is alive');
-  } else {
-    reject('dead cat');
-  }
+  delay(ms).then(()=>{})
+*/
+
+/* Промисификация */
+function delay(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms);
+  });
 }
 
-promiseShchrodinger
-  .then((catVerdict) => {
-    console.log(catVerdict);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+delay(200).then(() => {
+  console.log('ok');
+});
