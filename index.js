@@ -15,6 +15,22 @@ function delay(ms) {
   });
 }
 
-delay(200).then(() => {
-  console.log('ok');
-});
+function loadImage(src) {
+  const imgToSend = document.createElement('img');
+  imgToSend.setAttribute('src', src); // Браузер начинает грузить картинку
+
+  return new Promise((resolve, reject) => {
+    imgToSend.addEventListener('load', () => {
+      resolve(imgToSend);
+    });
+    imgToSend.addEventListener('error', () => {
+      reject(new Error());
+    });
+  });
+}
+
+loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg').then(
+  (imgToReceive) => {
+    document.body.append(imgToReceive);
+  }
+);
