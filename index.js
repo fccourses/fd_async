@@ -41,3 +41,8 @@ loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg')
   .catch(() => {
     alert('error happened');
   });
+
+/* 
+  Переписать USER CARD RENDER на промисы. 
+  Подгрузка пользователей асинхронная.
+*/
