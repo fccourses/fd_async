@@ -12,11 +12,14 @@ const obj = {
   firstName: 'Vlad',
   hostname: 'facebook.com',
   link: 'https://google.com',
+  getName() {},
+  test: undefined,
 };
 
 /* JSON - JavaScript Object Notation */
 
-const str = JSON.stringify(obj);
+const serializedObject = JSON.stringify(obj);
+console.log(serializedObject);
 
-typeof str;
-
+const deserializedObject = JSON.parse(serializedObject);
+console.log(deserializedObject);
