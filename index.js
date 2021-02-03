@@ -1,31 +1,22 @@
 'use strict';
 
-// 2 way to async
-const timeoutId = setTimeout(function test() {}, 0);
+/*
+ Создать объект с 3 свойствами(number, string, undefined), 1 метод
+ Сериализовать JSON.stringify
+ Вывести в консоль результат
+ Десериализовать JSON.parse
+ Посмотреть на результат
+ */
 
-function count() {
-  let number = 0;
+const obj = {
+  firstName: 'Vlad',
+  hostname: 'facebook.com',
+  link: 'https://google.com',
+};
 
-  const id = setInterval(() => {
-    console.log(++number);
-    for (let i = 0; i < 1000000000; i++) {}
-    if (number >= 20) {
-      clearInterval(id);
-      console.timeEnd('1');
-    }
-  }, 100);
-}
+/* JSON - JavaScript Object Notation */
 
-console.time('1');
-count();
+const str = JSON.stringify(obj);
 
-/* 
-Функция, которая последовательно выводит в консоль числа 
-от 1 до 20 с интервалом в 100мс.
-  Решить можно двумя способами. 
-    setTimeout - рекурсия с if'ом
-    setInterval - if, clearInterval
-  Померять время. 
-    console.time('1');
-    console.timeEnd('1');
-*/
+typeof str;
+
