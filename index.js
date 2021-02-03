@@ -46,3 +46,7 @@ loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg')
   Переписать USER CARD RENDER на промисы. 
   Подгрузка пользователей асинхронная.
 */
+
+fetch('http://localhost:3000/users')
+  .then((response) => response.json())
+  .then((users) => console.log(users));
