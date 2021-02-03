@@ -1,15 +1,8 @@
-const promise = fetch('./data.json');
-
-const promise2 = promise.then(
-  (response) => {
-    const promiseJson = response.json();
-    return promiseJson;
-  },
-  (err) => {
-    console.log('error: ', err);
-  }
-);
-
-promise2.then((data) => {
-  console.log(data);
-});
+const p = fetch('./data.json')
+  .then((res) => {
+    console.log(res)
+    return res.json(); // <- promise
+  })
+  .then((result) => {
+    console.log(result);
+  });
