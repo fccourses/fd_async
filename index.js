@@ -1,52 +1,24 @@
 'use strict';
 
-/* 
-  Создать функцию delay(ms).then(callback)
+console.log('1');
 
-  setTimeout(()=>{},ms)
+const p1 = fetch('./data.json');
 
-  delay(ms).then(()=>{})
-*/
+console.log('2', p1);
 
-/* Промисификация */
-function delay(ms) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms);
-  });
-}
+const p2 = p1.then((response) => {
+  console.log('5');
+  console.log(response);
+  const jsonPromise = response.json();
+  return jsonPromise;
+});
 
-/**
- *
- * @param {string} src
- * @return {Promise}
- */
-function loadImage(src) {
-  const imgToSend = document.createElement('img');
-  imgToSend.setAttribute('src', src); // Браузер начинает грузить картинку
+console.log('3', p2);
 
-  return new Promise((resolve, reject) => {
-    imgToSend.addEventListener('load', () => {
-      resolve(imgToSend);
-    });
-    imgToSend.addEventListener('error', () => {
-      reject(new Error());
-    });
-  });
-}
+const p3 = p2.then((data) => {
+  console.log('6');
+  console.log(data);
+  return 5;
+});
 
-loadImage('https://pro-spo.ru/images/stories/2014/elitefon.ru-38277.jpg')
-  .then((imgToReceive) => {
-    document.body.append(imgToReceive);
-  })
-  .catch(() => {
-    alert('error happened');
-  });
-
-/* 
-  Переписать USER CARD RENDER на промисы. 
-  Подгрузка пользователей асинхронная.
-*/
-
-fetch('http://localhost:3000/users')
-  .then((response) => response.json())
-  .then((users) => console.log(users));
+console.log('4', p3);
