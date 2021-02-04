@@ -1,34 +1,18 @@
 'use strict';
 
-function sum(a, b) {
-  if (!a || !b) {
-    throw new TypeError();
-  }
-  return a + b;
-}
-
-function sub(a, b) {
-  if (!a || !b) {
-    throw new TypeError();
-  }
-  return a - b;
-}
-
 console.log('start');
 
-try {
+setTimeout(() => {
+  console.log('timer');
+}, 0);
 
-  console.log('Внутри try до sum()');
-  sum(2); // выкинула ошибку
-  console.log('Внутри try после sum()'); // не отрабатывает
+const p1 = new Promise((resolve, reject) => {
+  console.log('Создание промиса');
+  resolve();
+  reject();
+  console.log('Завершение создания промиса');
+});
 
-} catch (err) {
-
-  console.log('Споймана ошибка ', err); // когда ошибка
-
-} finally {
-
-  console.log('finally'); // всегда отрабатывает
-}
+p1.then(() => console.log('В методе then'));
 
 console.log('end');
