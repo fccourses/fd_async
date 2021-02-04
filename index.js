@@ -1,17 +1,34 @@
 'use strict';
 
-const result = Promise.reject(42);
-const result2 = Promise.resolve(2);
-
-function handlePromise(promise) {
-  return promise
-    .then((result) => {
-      console.log(result);
-    })
-    .catch(() => {
-      console.log('Споймали ошибку');
-    });
+function sum(a, b) {
+  if (!a || !b) {
+    throw new TypeError();
+  }
+  return a + b;
 }
 
-handlePromise(result);
-handlePromise(result2);
+function sub(a, b) {
+  if (!a || !b) {
+    throw new TypeError();
+  }
+  return a - b;
+}
+
+console.log('start');
+
+try {
+
+  console.log('Внутри try до sum()');
+  sum(2); // выкинула ошибку
+  console.log('Внутри try после sum()'); // не отрабатывает
+
+} catch (err) {
+
+  console.log('Споймана ошибка ', err); // когда ошибка
+
+} finally {
+
+  console.log('finally'); // всегда отрабатывает
+}
+
+console.log('end');
