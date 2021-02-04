@@ -1,22 +1,17 @@
 'use strict';
 
-console.log('1');
+const result = Promise.reject(42);
+const result2 = Promise.resolve(2);
 
-fetch('./data.json')
-  .then((response) => {
-    console.log('5');
-    console.log(response);
-    const jsonPromise = response.json();
-    return jsonPromise;
-  })
-  .then((data) => {
-    console.log('6');
-    console.log(data);
-    return 5;
-  })
-  .catch((err) => {
-    console.log('ERROR WITH PROMISE',err);
-  })
-  .finally(()=>{
-    console.log('fetch ended')
-  })
+function handlePromise(promise) {
+  return promise
+    .then((result) => {
+      console.log(result);
+    })
+    .catch(() => {
+      console.log('Споймали ошибку');
+    });
+}
+
+handlePromise(result);
+handlePromise(result2);
